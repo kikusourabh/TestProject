@@ -12,11 +12,11 @@ import {Colors} from '../config/Colors';
 
 function UserRegistration() {
   const [dataValid, setDataValid] = useState({
-    name: true,
-    email: true,
-    phone: true,
-    date: true,
-    password: true,
+    name: '',
+    email: '',
+    phone: '',
+    date: '',
+    password: '',
   });
 
   // validation for Email
@@ -25,12 +25,12 @@ function UserRegistration() {
     if (/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(text)) {
       setDataValid({
         ...dataValid,
-        email: true,
+        email: text,
       });
     } else {
       setDataValid({
         ...dataValid,
-        email: false,
+        email: null,
       });
     }
   };
@@ -39,12 +39,12 @@ function UserRegistration() {
     if (/^[a-zA-Z ]{4,30}$/.test(text)) {
       setDataValid({
         ...dataValid,
-        name: true,
+        name: text,
       });
     } else {
       setDataValid({
         ...dataValid,
-        name: false,
+        name: null,
       });
     }
   };
@@ -53,12 +53,12 @@ function UserRegistration() {
     if (/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(text)) {
       setDataValid({
         ...dataValid,
-        phone: true,
+        phone: text,
       });
     } else {
       setDataValid({
         ...dataValid,
-        phone: false,
+        phone: null,
       });
     }
   };
@@ -70,12 +70,12 @@ function UserRegistration() {
     ) {
       setDataValid({
         ...dataValid,
-        date: true,
+        date: text,
       });
     } else {
       setDataValid({
         ...dataValid,
-        date: false,
+        date: null,
       });
     }
   };
@@ -89,12 +89,12 @@ function UserRegistration() {
     ) {
       setDataValid({
         ...dataValid,
-        password: true,
+        password: text,
       });
     } else {
       setDataValid({
         ...dataValid,
-        password: false,
+        password: null,
       });
     }
   };
@@ -133,7 +133,7 @@ function UserRegistration() {
               clearButtonMode="while-editing"
               onChangeText={(e) => checkName(e)}
             />
-            {dataValid.name ? null : (
+            {dataValid.name != null ? null : (
               <Text style={styles.error}>Name is not valid</Text>
             )}
             <TextInput
@@ -144,7 +144,7 @@ function UserRegistration() {
               clearButtonMode="while-editing"
               onChangeText={(e) => checkEmail(e)}
             />
-            {dataValid.email ? null : (
+            {dataValid.email != null ? null : (
               <Text style={styles.error}>email is not valid</Text>
             )}
             <TextInput
@@ -155,7 +155,7 @@ function UserRegistration() {
               clearButtonMode="while-editing"
               onChangeText={(e) => checkPhone(e)}
             />
-            {dataValid.phone ? null : (
+            {dataValid.phone != null ? null : (
               <Text style={styles.error}>phone is not valid</Text>
             )}
             <TextInput
@@ -165,7 +165,7 @@ function UserRegistration() {
               clearButtonMode="while-editing"
               onChangeText={(e) => checkDate(e)}
             />
-            {dataValid.date ? null : (
+            {dataValid.date != null ? null : (
               <Text style={styles.error}>date of birth is not valid</Text>
             )}
             <TextInput
@@ -176,7 +176,7 @@ function UserRegistration() {
               clearButtonMode="while-editing"
               onChangeText={(e) => checkPassword(e)}
             />
-            {dataValid.password ? null : (
+            {dataValid.password != null ? null : (
               <Text style={styles.error}>password is not valid</Text>
             )}
           </View>
