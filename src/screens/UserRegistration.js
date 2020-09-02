@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -11,6 +11,93 @@ import {
 import {Colors} from '../config/Colors';
 
 function UserRegistration() {
+  const [dataValid, setDataValid] = useState({
+    name: true,
+    email: true,
+    phone: true,
+    date: true,
+    password: true,
+  });
+
+  // validation for Email
+  // using regular expression
+  const checkEmail = (text) => {
+    if (/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(text)) {
+      setDataValid({
+        ...dataValid,
+        email: true,
+      });
+    } else {
+      setDataValid({
+        ...dataValid,
+        email: false,
+      });
+    }
+  };
+
+  const checkName = (text) => {
+    if (/^[a-zA-Z ]{4,30}$/.test(text)) {
+      setDataValid({
+        ...dataValid,
+        name: true,
+      });
+    } else {
+      setDataValid({
+        ...dataValid,
+        name: false,
+      });
+    }
+  };
+
+  const checkPhone = (text) => {
+    if (/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(text)) {
+      setDataValid({
+        ...dataValid,
+        phone: true,
+      });
+    } else {
+      setDataValid({
+        ...dataValid,
+        phone: false,
+      });
+    }
+  };
+  const checkDate = (text) => {
+    if (
+      /([0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})|([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])[-][0-9]{4})/.test(
+        text,
+      )
+    ) {
+      setDataValid({
+        ...dataValid,
+        date: true,
+      });
+    } else {
+      setDataValid({
+        ...dataValid,
+        date: false,
+      });
+    }
+  };
+  // validation for password
+  // using regular expression
+  const checkPassword = (text) => {
+    if (
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(
+        text,
+      )
+    ) {
+      setDataValid({
+        ...dataValid,
+        password: true,
+      });
+    } else {
+      setDataValid({
+        ...dataValid,
+        password: false,
+      });
+    }
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1}}>
@@ -44,34 +131,54 @@ function UserRegistration() {
               keyboardType="name-phone-pad"
               autoCompleteType="name"
               clearButtonMode="while-editing"
+              onChangeText={(e) => checkName(e)}
             />
+            {dataValid.name ? null : (
+              <Text style={styles.error}>Name is not valid</Text>
+            )}
             <TextInput
               style={styles.input}
               placeholder="Email"
               keyboardType="email-address"
               autoCompleteType="email"
               clearButtonMode="while-editing"
+              onChangeText={(e) => checkEmail(e)}
             />
+            {dataValid.email ? null : (
+              <Text style={styles.error}>email is not valid</Text>
+            )}
             <TextInput
               style={styles.input}
               placeholder="Phone"
               keyboardType="phone-pad"
               autoCompleteType="tel"
               clearButtonMode="while-editing"
+              onChangeText={(e) => checkPhone(e)}
             />
+            {dataValid.phone ? null : (
+              <Text style={styles.error}>phone is not valid</Text>
+            )}
             <TextInput
               style={styles.input}
-              placeholder="Date of birth"
+              placeholder="Date of birth DD-MM-YYYY"
               keyboardType="numbers-and-punctuation"
               clearButtonMode="while-editing"
+              onChangeText={(e) => checkDate(e)}
             />
+            {dataValid.date ? null : (
+              <Text style={styles.error}>date of birth is not valid</Text>
+            )}
             <TextInput
               style={styles.input}
               placeholder="Password"
               secureTextEntry={true}
               autoCompleteType="password"
               clearButtonMode="while-editing"
+              onChangeText={(e) => checkPassword(e)}
             />
+            {dataValid.password ? null : (
+              <Text style={styles.error}>password is not valid</Text>
+            )}
           </View>
         </View>
         <View
@@ -84,6 +191,7 @@ function UserRegistration() {
                 height: 56,
                 width: '70%',
                 borderRadius: 10,
+                marginTop: 20,
                 backgroundColor: Colors.primaryDarkColor,
                 alignSelf: 'center',
                 justifyContent: 'center',
@@ -112,5 +220,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     borderStyle: 'solid',
     borderColor: Colors.primaryDarkColor,
+  },
+  error: {
+    color: Colors.error,
   },
 });

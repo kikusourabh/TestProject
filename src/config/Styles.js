@@ -10,4 +10,10 @@ export const Styles = StyleSheet.create({
     colors: Colors.secondaryTextColor,
     fontSize: 14,
   },
+  ErrorMsg: {
+    color: Colors.error,
+    marginStart: 20,
+    marginTop: 10,
+    fontWeight: 'bold',
+  },
 });
