@@ -1,15 +1,13 @@
 import React from 'react';
 import UserRegistration from './src/screens/UserRegistration';
 import {Provider} from 'react-redux';
-import {store, persistStor} from './src/store/StoreConfig';
-import {PersistGate} from 'redux-persist/integration/react';
+import {store} from './src/store/StoreConfig';
+import Home from './src/screens/Home';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistStor}>
-        <UserRegistration />
-      </PersistGate>
+      <Home />
     </Provider>
   );
 };

@@ -5,13 +5,12 @@ const initalState = {
   user: {},
 };
 
-export const RegistrationReducer = (state = initalState, action) => {
+const RegistrationReducer = (state = initalState, action) => {
   switch (action.type) {
     case IS_LOGIN:
       return state.isLogin;
     case REG:
       return {
-        ...state,
         isLogin: true,
         user: action.user,
       };
@@ -19,3 +18,5 @@ export const RegistrationReducer = (state = initalState, action) => {
       return state;
   }
 };
+
+export default RegistrationReducer;

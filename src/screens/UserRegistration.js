@@ -7,10 +7,15 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Alert,
+  Button,
 } from 'react-native';
 import {Colors} from '../config/Colors';
+import {useDispatch, useSelector} from 'react-redux';
+import {registerUser} from '../store/actions/RegistrationAction';
 
 function UserRegistration() {
+  const user = useSelector((state) => state.user);
   const [dataValid, setDataValid] = useState({
     name: '',
     email: '',
@@ -98,6 +103,22 @@ function UserRegistration() {
       });
     }
   };
+  const dispatch = useDispatch();
+  const signUp = () => {
+    if (
+      dataValid != null &&
+      dataValid.name != null &&
+      dataValid.email != null &&
+      dataValid.phone != null &&
+      dataValid.date != null &&
+      dataValid.password != null
+    ) {
+      dispatch(registerUser(dataValid));
+    } else {
+      Alert.alert('Registration', 'input are not valid', [{text: 'OK'}]);
+    }
+  };
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1}}>
@@ -185,7 +206,7 @@ function UserRegistration() {
           style={{
             flex: 1,
           }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={signUp}>
             <View
               style={{
                 height: 56,
