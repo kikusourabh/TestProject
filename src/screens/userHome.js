@@ -67,7 +67,15 @@ function userHome({navigation}) {
       <View>
         <View style={{flex: 3, flexDirection: 'row'}}>
           <Image style={{height: 56, width: 56}} source={{uri: item.img}} />
-          <Text numberOfLines={4}>{item.text}</Text>
+          <Text
+            style={{
+              paddingStart: 16,
+              justifyContent: 'center',
+              alignSelf: 'center',
+            }}
+            numberOfLines={4}>
+            {item.text}
+          </Text>
         </View>
       </View>
     );
@@ -188,7 +196,7 @@ function userHome({navigation}) {
             onChangeText={(e) => Search(e)}
           />
           <FlatList
-            style={{padding: 16}}
+            style={{padding: 16, marginBottom: 10}}
             data={data}
             keyExtractor={({key}) => key.toString()}
             renderItem={QuotesItem}
