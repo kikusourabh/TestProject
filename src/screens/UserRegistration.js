@@ -11,11 +11,10 @@ import {
   Button,
 } from 'react-native';
 import {Colors} from '../config/Colors';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {registerUser} from '../store/actions/RegistrationAction';
 
 function UserRegistration() {
-  const user = useSelector((state) => state.user);
   const [dataValid, setDataValid] = useState({
     name: '',
     email: '',

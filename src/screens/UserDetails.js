@@ -1,9 +1,16 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
+import {signOut} from '../store/actions/RegistrationAction';
+import {useDispatch} from 'react-redux';
+
 function UserDetails() {
+  const dispatch = useDispatch();
+  const logOut = () => {
+    dispatch(signOut());
+  };
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>UserDetails</Text>
+      <Button title="Sign out" onPress={logOut} />
     </View>
   );
 }

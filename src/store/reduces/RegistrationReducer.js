@@ -1,4 +1,4 @@
-import {IS_LOGIN, REG} from '../Types/RegistrationTypes';
+import {REG, LOG_OUT} from '../Types/RegistrationTypes';
 
 const initalState = {
   isLogin: false,
@@ -7,13 +7,17 @@ const initalState = {
 
 const RegistrationReducer = (state = initalState, action) => {
   switch (action.type) {
-    case IS_LOGIN:
-      return state.isLogin;
     case REG:
       return {
         isLogin: true,
         user: action.user,
       };
+    case LOG_OUT:
+      return {
+        isLogin: false,
+        user: {},
+      };
+
     default:
       return state;
   }

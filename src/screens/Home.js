@@ -5,7 +5,7 @@ import UserRegistration from './UserRegistration';
 import HomeRoute from '../routes/HomeRoute';
 
 function Home() {
-  const isLogin = useSelector((state) => state.isLogin);
+  const isLogin = useSelector((state) => state.register.isLogin);
 
   if (isLogin) {
     return <HomeRoute />;
