@@ -7,5 +7,6 @@ export const Colors = {
   secondaryDarkColor: '#4ba3c7',
   primaryTextColor: '#006064',
   secondaryTextColor: '#e0f7fa',
+  white: '#ffffff',
   error: '#ea5455',
 };

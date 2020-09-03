@@ -3,11 +3,11 @@ import {Colors} from './Colors';
 
 export const Styles = StyleSheet.create({
   PrimaryText: {
-    colors: Colors.primaryTextColor,
+    color: Colors.primaryTextColor,
     fontSize: 14,
   },
   SecondaryText: {
-    colors: Colors.secondaryTextColor,
+    color: Colors.secondaryTextColor,
     fontSize: 14,
   },
   ErrorMsg: {
