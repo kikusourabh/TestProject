@@ -19,10 +19,9 @@ function UserDetails() {
         style={{
           flexDirection: 'row',
           height: 80,
-          paddingTop: 20,
           backgroundColor: Colors.primaryColor,
         }}>
-        <View style={{flex: 1, marginStart: 16, justifyContent: 'center'}}>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Text
             style={[Styles.PrimaryText, {fontSize: 20, fontWeight: 'bold'}]}>
             User details
